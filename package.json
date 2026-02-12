@@ -1,0 +1,30 @@
+{
+  "name": "itay-claude-skills",
+  "version": "1.0.0",
+  "description": "Enhanced Claude Code skills: documentation on steroids, project planner, and project tracker",
+  "type": "module",
+  "bin": {
+    "itay-claude-skills": "./bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "skills"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "skills",
+    "documentation",
+    "mermaid",
+    "project-management",
+    "planning"
+  ],
+  "author": "Itay",
+  "license": "MIT",
+  "dependencies": {
+    "@clack/prompts": "^0.7.0"
+  }
+}
