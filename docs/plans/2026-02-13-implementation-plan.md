@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Build a shareable npm package containing three Claude Code skills: docs-on-steroids, project-planner, and project-tracker.
+**Goal:** Build a shareable npm package containing three Claude Code skills: amp:docs, amp:plan, and amp:track.
 
 **Architecture:** Monorepo with `skills/` containing three skill directories, each with a `SKILL.md` frontmatter file plus reference docs. A `bin/cli.js` using `@clack/prompts` handles interactive installation to `~/.claude/skills/` or `./.claude/skills/`.
 
@@ -65,9 +65,9 @@ Standard MIT license with year 2026 and author "Itay".
 Shareable npm package with three Claude Code skills. Installable via `npx itay-claude-skills`.
 
 ## Skills
-- `docs-on-steroids` — Enhanced documentation with Mermaid diagrams, auto-detect, drift detection
-- `project-planner` — Auto-generates PRD.md, PLAN.md, PROGRESS.md, PIVOTS.md with diagrams
-- `project-tracker` — Lightweight PM via single PROJECT.md with kanban + Mermaid views
+- `amp:docs` — Enhanced documentation with Mermaid diagrams, auto-detect, drift detection
+- `amp:plan` — Auto-generates PRD.md, PLAN.md, PROGRESS.md, PIVOTS.md with diagrams
+- `amp:track` — Lightweight PM via single PROJECT.md with kanban + Mermaid views
 
 ## Conventions
 - All skill files use YAML frontmatter per Claude Code spec
@@ -107,18 +107,18 @@ const skillsSource = join(__dirname, '..', 'skills');
 
 const SKILLS = [
   {
-    value: 'docs-on-steroids',
-    label: 'docs-on-steroids',
+    value: 'amp-docs',
+    label: 'amp:docs',
     hint: 'Enhanced documentation with Mermaid diagrams',
   },
   {
-    value: 'project-planner',
-    label: 'project-planner',
+    value: 'amp-plan',
+    label: 'amp:plan',
     hint: 'Auto-generate PRD, PLAN, PROGRESS, PIVOTS',
   },
   {
-    value: 'project-tracker',
-    label: 'project-tracker',
+    value: 'amp-track',
+    label: 'amp:track',
     hint: 'Lightweight PM via PROJECT.md',
   },
 ];
@@ -192,9 +192,9 @@ async function main() {
       `Installed ${skillsToInstall.length} skill(s) to ${targetBase}`,
       '',
       'Available commands:',
-      '  /docs-on-steroids [topic]  — Generate documentation',
-      '  /project-planner           — Start brainstorming/planning',
-      '  /project-tracker [action]  — Manage project board',
+      '  /amp:docs [topic]   — Generate documentation',
+      '  /amp:plan [name]    — Start brainstorming/planning',
+      '  /amp:track [action] — Manage project board',
     ].join('\n'),
     'Next steps'
   );
@@ -224,10 +224,10 @@ git commit -m "feat: add interactive CLI installer with @clack/prompts"
 
 ---
 
-## Task 3: Skill 1 — docs-on-steroids/SKILL.md
+## Task 3: Skill 1 — amp-docs/SKILL.md
 
 **Files:**
-- Create: `D:/ws/Itay-Claude-Skills/skills/docs-on-steroids/SKILL.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-docs/SKILL.md`
 
 **Step 1: Create the skill definition**
 
@@ -242,7 +242,7 @@ The SKILL.md must:
 
 ```yaml
 ---
-name: docs-on-steroids
+name: amp:docs
 description: Create comprehensive technical documentation with Mermaid diagrams, PlantUML guidance, and visual architecture docs. Auto-detects undocumented code areas, generates documentation gap reports, and flags stale docs that have drifted from code changes. Use when documenting code architecture, API flows, database schemas, state machines, system design, creating README files, explaining code, or when any technical concept benefits from visual diagrams. Also use when asked to audit documentation freshness or find undocumented code.
 argument-hint: [topic or file to document]
 ---
@@ -262,19 +262,19 @@ Body should include:
 **Step 2: Commit**
 
 ```bash
-git add skills/docs-on-steroids/SKILL.md
-git commit -m "feat: add docs-on-steroids skill definition"
+git add skills/amp-docs/SKILL.md
+git commit -m "feat: add amp:docs skill definition"
 ```
 
 ---
 
-## Task 4: Skill 1 — docs-on-steroids Reference Files
+## Task 4: Skill 1 — amp-docs Reference Files
 
 **Files:**
-- Create: `D:/ws/Itay-Claude-Skills/skills/docs-on-steroids/mermaid-reference.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/docs-on-steroids/diagram-examples.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/docs-on-steroids/doc-templates.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/docs-on-steroids/drift-detection.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-docs/mermaid-reference.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-docs/diagram-examples.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-docs/doc-templates.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-docs/drift-detection.md`
 
 **Step 1: Create mermaid-reference.md**
 
@@ -381,22 +381,22 @@ Instructions for Claude on how to detect stale documentation:
 **Step 5: Commit**
 
 ```bash
-git add skills/docs-on-steroids/
-git commit -m "feat: add docs-on-steroids reference files (mermaid ref, examples, templates, drift detection)"
+git add skills/amp-docs/
+git commit -m "feat: add amp:docs reference files (mermaid ref, examples, templates, drift detection)"
 ```
 
 ---
 
-## Task 5: Skill 2 — project-planner/SKILL.md
+## Task 5: Skill 2 — amp-plan/SKILL.md
 
 **Files:**
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/SKILL.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/SKILL.md`
 
 **Step 1: Create the skill definition**
 
 ```yaml
 ---
-name: project-planner
+name: amp:plan
 description: Automatically creates comprehensive project planning documentation when brainstorming or starting new projects, features, or components. Generates PRD.md, PLAN.md, PROGRESS.md, and PIVOTS.md with auto-selected Mermaid diagrams. Use when the user is brainstorming, planning a new project, designing a feature, starting a new component, or discussing what to build. Triggers on phrases like "let's build", "I want to create", "new project", "add a feature", "new component", "let's brainstorm", "what if we".
 argument-hint: [project or feature name]
 ---
@@ -410,29 +410,29 @@ Body should include:
 5. **PRD generation guide** — How to extract problem statement, goals, user stories, scope from conversation
 6. **PLAN generation guide** — How to break work into phases and tasks with estimates
 7. **Auto-update rules** — When/how to update PROGRESS.md (task completion) and PIVOTS.md (plan changes)
-8. **Cross-skill hooks** — How to seed project-tracker's PROJECT.md from PLAN.md
+8. **Cross-skill hooks** — How to seed amp:track's PROJECT.md from PLAN.md
 9. **References** — Links to all template files
 
 **Step 2: Commit**
 
 ```bash
-git add skills/project-planner/SKILL.md
-git commit -m "feat: add project-planner skill definition"
+git add skills/amp-plan/SKILL.md
+git commit -m "feat: add amp:plan skill definition"
 ```
 
 ---
 
-## Task 6: Skill 2 — project-planner Templates and Examples
+## Task 6: Skill 2 — amp-plan Templates and Examples
 
 **Files:**
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/prd-template.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/plan-template.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/progress-template.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/pivots-template.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/diagram-selection.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/examples/new-project.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/examples/new-feature.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-planner/examples/new-component.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/prd-template.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/plan-template.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/progress-template.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/pivots-template.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/diagram-selection.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/examples/new-project.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/examples/new-feature.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-plan/examples/new-component.md`
 
 **Step 1: Create prd-template.md**
 
@@ -508,23 +508,23 @@ Each example should be a realistic, complete output — not a template but an ac
 **Step 7: Commit**
 
 ```bash
-git add skills/project-planner/
-git commit -m "feat: add project-planner templates, diagram selection guide, and examples"
+git add skills/amp-plan/
+git commit -m "feat: add amp:plan templates, diagram selection guide, and examples"
 ```
 
 ---
 
-## Task 7: Skill 3 — project-tracker/SKILL.md
+## Task 7: Skill 3 — amp-track/SKILL.md
 
 **Files:**
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-tracker/SKILL.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-track/SKILL.md`
 
 **Step 1: Create the skill definition**
 
 ```yaml
 ---
-name: project-tracker
-description: Lightweight project management through a single PROJECT.md file with kanban board, Mermaid Gantt timeline, dependency graph, and velocity tracking. Auto-updates board state, regenerates diagrams, and logs changes. Use when the user asks about project status, wants to track tasks, manage a board, add or complete tasks, check what's blocking, view the timeline, or manage sprints. Also use via /project-tracker command.
+name: amp:track
+description: Lightweight project management through a single PROJECT.md file with kanban board, Mermaid Gantt timeline, dependency graph, and velocity tracking. Auto-updates board state, regenerates diagrams, and logs changes. Use when the user asks about project status, wants to track tasks, manage a board, add or complete tasks, check what's blocking, view the timeline, or manage sprints. Also use via /amp:track command.
 argument-hint: [status | add <task> | init | next | board]
 ---
 ```
@@ -549,17 +549,17 @@ Body should include:
 **Step 2: Commit**
 
 ```bash
-git add skills/project-tracker/SKILL.md
-git commit -m "feat: add project-tracker skill definition"
+git add skills/amp-track/SKILL.md
+git commit -m "feat: add amp:track skill definition"
 ```
 
 ---
 
-## Task 8: Skill 3 — project-tracker Reference Files
+## Task 8: Skill 3 — amp-track Reference Files
 
 **Files:**
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-tracker/project-template.md`
-- Create: `D:/ws/Itay-Claude-Skills/skills/project-tracker/update-guide.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-track/project-template.md`
+- Create: `D:/ws/Itay-Claude-Skills/skills/amp-track/update-guide.md`
 
 **Step 1: Create project-template.md**
 
@@ -573,7 +573,7 @@ The complete PROJECT.md template with all sections:
 - Velocity table with headers
 - Log table with headers
 
-This is what gets copied when the user runs `/project-tracker init`.
+This is what gets copied when the user runs `/amp:track init`.
 
 **Step 2: Create update-guide.md**
 
@@ -612,8 +612,8 @@ Detailed rules for Claude on how to maintain PROJECT.md:
 **Step 3: Commit**
 
 ```bash
-git add skills/project-tracker/
-git commit -m "feat: add project-tracker template and update guide"
+git add skills/amp-track/
+git commit -m "feat: add amp:track template and update guide"
 ```
 
 ---
@@ -663,23 +663,23 @@ LICENSE
 package.json
 package-lock.json
 README.md
-skills/docs-on-steroids/SKILL.md
-skills/docs-on-steroids/diagram-examples.md
-skills/docs-on-steroids/doc-templates.md
-skills/docs-on-steroids/drift-detection.md
-skills/docs-on-steroids/mermaid-reference.md
-skills/project-planner/SKILL.md
-skills/project-planner/diagram-selection.md
-skills/project-planner/examples/new-component.md
-skills/project-planner/examples/new-feature.md
-skills/project-planner/examples/new-project.md
-skills/project-planner/plan-template.md
-skills/project-planner/pivots-template.md
-skills/project-planner/progress-template.md
-skills/project-planner/prd-template.md
-skills/project-tracker/SKILL.md
-skills/project-tracker/project-template.md
-skills/project-tracker/update-guide.md
+skills/amp-docs/SKILL.md
+skills/amp-docs/diagram-examples.md
+skills/amp-docs/doc-templates.md
+skills/amp-docs/drift-detection.md
+skills/amp-docs/mermaid-reference.md
+skills/amp-plan/SKILL.md
+skills/amp-plan/diagram-selection.md
+skills/amp-plan/examples/new-component.md
+skills/amp-plan/examples/new-feature.md
+skills/amp-plan/examples/new-project.md
+skills/amp-plan/plan-template.md
+skills/amp-plan/pivots-template.md
+skills/amp-plan/progress-template.md
+skills/amp-plan/prd-template.md
+skills/amp-track/SKILL.md
+skills/amp-track/project-template.md
+skills/amp-track/update-guide.md
 ```
 
 **Step 2: Verify all SKILL.md frontmatter is valid**
@@ -698,7 +698,7 @@ Expected: Interactive prompt appears with skill selection
 **Step 4: Test local installation**
 
 Run the CLI, select "All skills", select "Local" installation.
-Verify: `.claude/skills/docs-on-steroids/SKILL.md`, `.claude/skills/project-planner/SKILL.md`, `.claude/skills/project-tracker/SKILL.md` all exist.
+Verify: `.claude/skills/amp-docs/SKILL.md`, `.claude/skills/amp-plan/SKILL.md`, `.claude/skills/amp-track/SKILL.md` all exist.
 
 **Step 5: Final commit**
 

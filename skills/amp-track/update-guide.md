@@ -34,7 +34,7 @@ This document contains the exact rules Claude must follow when modifying PROJECT
 
 ### Example
 
-**User command:** `/project-tracker add Build user profile page ~2d #frontend @bob`
+**User command:** `/amp:track add Build user profile page ~2d #frontend @bob`
 
 **Before -- Backlog section:**
 ```markdown
@@ -549,7 +549,7 @@ Trend analysis: velocities [6, 7, 8] are each >= previous, so trend is **Improvi
 
 ### Algorithm
 
-When `init` finds a `PLAN.md` file (from the project-planner skill):
+When `init` finds a `PLAN.md` file (from the amp:plan skill):
 
 1. Open PLAN.md and find the `## Phases` section.
 2. For each phase heading (e.g., `### Phase 1: Setup`):
@@ -603,7 +603,7 @@ When `init` finds a `PLAN.md` file (from the project-planner skill):
 
 ### Algorithm
 
-When a task is moved to Done and a `PROGRESS.md` file exists (from the project-planner skill):
+When a task is moved to Done and a `PROGRESS.md` file exists (from the amp:plan skill):
 
 1. Open PROGRESS.md.
 2. Find the `## Completed` table.

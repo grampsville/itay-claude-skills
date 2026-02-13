@@ -11,18 +11,18 @@ const skillsSource = join(__dirname, '..', 'skills');
 
 const SKILLS = [
   {
-    value: 'docs-on-steroids',
-    label: 'docs-on-steroids',
+    value: 'amp-docs',
+    label: 'amp:docs',
     hint: 'Enhanced documentation with Mermaid diagrams',
   },
   {
-    value: 'project-planner',
-    label: 'project-planner',
+    value: 'amp-plan',
+    label: 'amp:plan',
     hint: 'Auto-generate PRD, PLAN, PROGRESS, PIVOTS',
   },
   {
-    value: 'project-tracker',
-    label: 'project-tracker',
+    value: 'amp-track',
+    label: 'amp:track',
     hint: 'Lightweight PM via PROJECT.md',
   },
 ];
@@ -96,9 +96,9 @@ async function main() {
       `Installed ${skillsToInstall.length} skill(s) to ${targetBase}`,
       '',
       'Available commands:',
-      '  /docs-on-steroids [topic]  — Generate documentation',
-      '  /project-planner           — Start brainstorming/planning',
-      '  /project-tracker [action]  — Manage project board',
+      '  /amp:docs [topic]   — Generate documentation',
+      '  /amp:plan [name]    — Start brainstorming/planning',
+      '  /amp:track [action] — Manage project board',
     ].join('\n'),
     'Next steps'
   );

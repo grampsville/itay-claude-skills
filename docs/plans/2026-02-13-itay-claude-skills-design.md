@@ -19,14 +19,14 @@ Itay-Claude-Skills/
 ├── bin/
 │   └── cli.js                         # Interactive CLI installer
 ├── skills/
-│   ├── docs-on-steroids/
-│   │   ├── SKILL.md                   # Documentation skill definition
+│   ├── amp-docs/
+│   │   ├── SKILL.md                   # Documentation skill definition (amp:docs)
 │   │   ├── mermaid-reference.md       # Complete Mermaid syntax (15+ types)
 │   │   ├── diagram-examples.md        # Real-world examples
 │   │   ├── doc-templates.md           # Templates for different doc types
 │   │   └── drift-detection.md         # Stale doc detection instructions
-│   ├── project-planner/
-│   │   ├── SKILL.md                   # Brainstorming/planning skill definition
+│   ├── amp-plan/
+│   │   ├── SKILL.md                   # Brainstorming/planning skill definition (amp:plan)
 │   │   ├── prd-template.md            # PRD.md template
 │   │   ├── plan-template.md           # PLAN.md template
 │   │   ├── progress-template.md       # PROGRESS.md template
@@ -36,8 +36,8 @@ Itay-Claude-Skills/
 │   │       ├── new-project.md
 │   │       ├── new-feature.md
 │   │       └── new-component.md
-│   └── project-tracker/
-│       ├── SKILL.md                   # Project management skill definition
+│   └── amp-track/
+│       ├── SKILL.md                   # Project management skill definition (amp:track)
 │       ├── project-template.md        # PROJECT.md template
 │       └── update-guide.md            # Rules for auto-updating board + diagrams
 └── docs/
@@ -46,7 +46,7 @@ Itay-Claude-Skills/
 
 ---
 
-## Skill 1: docs-on-steroids
+## Skill 1: amp:docs
 
 ### Trigger
 
@@ -54,7 +54,7 @@ Activates when the user asks to document code, create READMEs, explain architect
 
 ### Enhancements Over Reference Repo
 
-| Feature | Reference Repo | docs-on-steroids |
+| Feature | Reference Repo | amp:docs |
 |---------|---------------|------------------|
 | Diagram types | 15 Mermaid types | 15 Mermaid + PlantUML + DOT/Graphviz guidance |
 | Detection | Manual invocation only | Auto-scans for undocumented code areas |
@@ -126,7 +126,7 @@ Plus guidance for PlantUML and DOT where they excel.
 
 ---
 
-## Skill 2: project-planner
+## Skill 2: amp:plan
 
 ### Trigger
 
@@ -255,7 +255,7 @@ Generates a complete planning package in `docs/plans/<feature-or-project-name>/`
 
 ---
 
-## Skill 3: project-tracker
+## Skill 3: amp:track
 
 ### Trigger
 
@@ -326,9 +326,9 @@ Maintains one `PROJECT.md` at the repo root — the entire PM system in one file
 
 ## Cross-Skill Awareness
 
-- `project-planner` creates PLAN.md → `project-tracker` can seed PROJECT.md from it
-- `project-tracker` task completions → `project-planner` auto-updates PROGRESS.md
-- `docs-on-steroids` reads PROJECT.md to understand what's been built and needs docs
+- `amp:plan` creates PLAN.md → `amp:track` can seed PROJECT.md from it
+- `amp:track` task completions → `amp:plan` auto-updates PROGRESS.md
+- `amp:docs` reads PROJECT.md to understand what's been built and needs docs
 
 ---
 
@@ -345,9 +345,9 @@ Maintains one `PROJECT.md` at the repo root — the entire PM system in one file
 ┌  Itay Claude Skills Installer
 │
 ◆  Which skills would you like to install?
-│  ◻ docs-on-steroids — Enhanced documentation with Mermaid diagrams
-│  ◻ project-planner — Auto-generate PRD, PLAN, PROGRESS, PIVOTS
-│  ◻ project-tracker — Lightweight PM via PROJECT.md
+│  ◻ amp:docs — Enhanced documentation with Mermaid diagrams
+│  ◻ amp:plan — Auto-generate PRD, PLAN, PROGRESS, PIVOTS
+│  ◻ amp:track — Lightweight PM via PROJECT.md
 │  ◻ All skills (recommended)
 │
 ◆  Install location?
@@ -359,7 +359,7 @@ Maintains one `PROJECT.md` at the repo root — the entire PM system in one file
 └  Done! Installed 3 skills to ~/.claude/skills/
 
    Available commands:
-   /docs-on-steroids [topic]  — Generate documentation
-   /project-planner           — Start brainstorming/planning
-   /project [status|add|init] — Manage project board
+   /amp:docs [topic]   — Generate documentation
+   /amp:plan [name]    — Start brainstorming/planning
+   /amp:track [action] — Manage project board
 ```

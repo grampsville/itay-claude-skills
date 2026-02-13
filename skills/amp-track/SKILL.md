@@ -1,10 +1,10 @@
 ---
-name: project-tracker
-description: Lightweight project management through a single PROJECT.md file with kanban board, Mermaid Gantt timeline, dependency graph, and velocity tracking. Auto-updates board state, regenerates diagrams, and logs changes. Use when the user asks about project status, wants to track tasks, manage a board, add or complete tasks, check what's blocking, view the timeline, or manage sprints. Also use via /project-tracker command.
+name: amp:track
+description: Lightweight project management through a single PROJECT.md file with kanban board, Mermaid Gantt timeline, dependency graph, and velocity tracking. Auto-updates board state, regenerates diagrams, and logs changes. Use when the user asks about project status, wants to track tasks, manage a board, add or complete tasks, check what's blocking, view the timeline, or manage sprints. Also use via /amp:track command.
 argument-hint: [status | add <task> | init | next | board]
 ---
 
-# Project Tracker
+# amp:track
 
 Manage an entire project through a single `PROJECT.md` file. The board section is the source of truth; timeline, dependency graph, and velocity are generated views that stay in sync automatically.
 
@@ -16,7 +16,7 @@ Create a new `PROJECT.md` in the repository root (or the current working directo
 
 **Behavior:**
 1. Check if `PROJECT.md` already exists. If so, ask the user before overwriting.
-2. Check if a `PLAN.md` exists (from project-planner). If found, seed the board from its phases and tasks (see "Seeding from PLAN.md" below). If not, use the blank template from `project-template.md`.
+2. Check if a `PLAN.md` exists (from amp:plan). If found, seed the board from its phases and tasks (see "Seeding from PLAN.md" below). If not, use the blank template from `project-template.md`.
 3. Replace `[Project Name]` with the actual project name (ask the user or derive from the directory name).
 4. Set Sprint 1 start date to today and end date to today + 14 days.
 5. Log the initialization in the Log table.
@@ -46,7 +46,7 @@ Add a new task to the Backlog column.
 
 **Example:**
 ```
-/project-tracker add Implement user auth ~3d #backend @alice
+/amp:track add Implement user auth ~3d #backend @alice
 ```
 
 Adds to Backlog:
@@ -274,7 +274,7 @@ Parses to:
 
 ## Cross-Skill Hooks
 
-### Seeding from PLAN.md (project-planner)
+### Seeding from PLAN.md (amp:plan)
 
 When `PLAN.md` exists during `init`:
 
@@ -286,7 +286,7 @@ When `PLAN.md` exists during `init`:
 6. Generate the initial Gantt chart from these tasks
 7. Generate the initial dependency graph from PLAN.md's dependency graph if present
 
-### Updating PROGRESS.md (project-planner)
+### Updating PROGRESS.md (amp:plan)
 
 When a task is moved to Done and a `PROGRESS.md` exists:
 

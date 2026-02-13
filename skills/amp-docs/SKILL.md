@@ -1,10 +1,10 @@
 ---
-name: docs-on-steroids
+name: amp:docs
 description: Create comprehensive technical documentation with Mermaid diagrams, PlantUML guidance, and visual architecture docs. Auto-detects undocumented code areas, generates documentation gap reports, and flags stale docs that have drifted from code changes. Use when documenting code architecture, API flows, database schemas, state machines, system design, creating README files, explaining code, or when any technical concept benefits from visual diagrams. Also use when asked to audit documentation freshness or find undocumented code.
 argument-hint: "[topic or file to document]"
 ---
 
-# docs-on-steroids
+# amp:docs
 
 Enhanced documentation generation with visual diagrams, auto-detection of undocumented code, and drift detection for stale docs.
 

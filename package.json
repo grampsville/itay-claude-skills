@@ -1,7 +1,7 @@
 {
   "name": "itay-claude-skills",
-  "version": "1.0.0",
-  "description": "Enhanced Claude Code skills: documentation on steroids, project planner, and project tracker",
+  "version": "2.0.0",
+  "description": "Amp skills for Claude Code: documentation, project planning, and project tracking",
   "type": "module",
   "bin": {
     "itay-claude-skills": "./bin/cli.js"

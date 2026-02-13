@@ -4,9 +4,9 @@
 Shareable npm package with three Claude Code skills. Installable via `npx itay-claude-skills`.
 
 ## Skills
-- `docs-on-steroids` — Enhanced documentation with Mermaid diagrams, auto-detect, drift detection
-- `project-planner` — Auto-generates PRD.md, PLAN.md, PROGRESS.md, PIVOTS.md with diagrams
-- `project-tracker` — Lightweight PM via single PROJECT.md with kanban + Mermaid views
+- `amp:docs` — Enhanced documentation with Mermaid diagrams, auto-detect, drift detection
+- `amp:plan` — Auto-generates PRD.md, PLAN.md, PROGRESS.md, PIVOTS.md with diagrams
+- `amp:track` — Lightweight PM via single PROJECT.md with kanban + Mermaid views
 
 ## Conventions
 - All skill files use YAML frontmatter per Claude Code spec

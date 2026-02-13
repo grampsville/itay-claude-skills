@@ -14,13 +14,13 @@ The interactive installer lets you pick which skills to install and whether to i
 
 | Skill | Slash Command | What It Does |
 |-------|---------------|--------------|
-| **docs-on-steroids** | `/docs-on-steroids [topic]` | Generate comprehensive documentation with 19 Mermaid diagram types, auto-detect undocumented code, flag stale docs |
-| **project-planner** | `/project-planner [name]` | Auto-generate PRD.md, PLAN.md, PROGRESS.md, PIVOTS.md with context-appropriate diagrams |
-| **project-tracker** | `/project-tracker [action]` | Manage projects via a single PROJECT.md with kanban board, Gantt timeline, dependency graph, sprint velocity |
+| **amp:docs** | `/amp:docs [topic]` | Generate comprehensive documentation with 19 Mermaid diagram types, auto-detect undocumented code, flag stale docs |
+| **amp:plan** | `/amp:plan [name]` | Auto-generate PRD.md, PLAN.md, PROGRESS.md, PIVOTS.md with context-appropriate diagrams |
+| **amp:track** | `/amp:track [action]` | Manage projects via a single PROJECT.md with kanban board, Gantt timeline, dependency graph, sprint velocity |
 
 ---
 
-## docs-on-steroids
+## amp:docs
 
 Generate comprehensive technical documentation with embedded visual diagrams. Covers 19 Mermaid diagram types -- flowcharts, sequence diagrams, ER diagrams, C4 architecture, state machines, Gantt charts, mindmaps, git graphs, and more.
 
@@ -35,9 +35,9 @@ Generate comprehensive technical documentation with embedded visual diagrams. Co
 **Usage:**
 
 ```
-/docs-on-steroids src/auth
-/docs-on-steroids database schema
-/docs-on-steroids              (runs auto-detect across the codebase)
+/amp:docs src/auth
+/amp:docs database schema
+/amp:docs              (runs auto-detect across the codebase)
 ```
 
 **Sample output:**
@@ -59,9 +59,9 @@ flowchart TD
 
 ---
 
-## project-planner
+## amp:plan
 
-Automatically generates structured planning documentation when brainstorming or starting something new. Detects natural language triggers like "let's build", "new project", "add a feature", or "what if we" -- or invoke directly with `/project-planner`.
+Automatically generates structured planning documentation when brainstorming or starting something new. Detects natural language triggers like "let's build", "new project", "add a feature", or "what if we" -- or invoke directly with `/amp:plan`.
 
 **Generates four files in `docs/plans/<name>/`:**
 
@@ -86,8 +86,8 @@ Automatically generates structured planning documentation when brainstorming or 
 **Usage:**
 
 ```
-/project-planner todo-app
-/project-planner OAuth integration
+/amp:plan todo-app
+/amp:plan OAuth integration
 "Let's build a real-time chat feature"    (auto-triggers)
 ```
 
@@ -95,7 +95,7 @@ Automatically generates structured planning documentation when brainstorming or 
 
 ---
 
-## project-tracker
+## amp:track
 
 Manage an entire project through a single `PROJECT.md` file. Features a kanban board as the source of truth, with a Mermaid Gantt timeline, dependency graph, velocity tracking, and sprint management -- all regenerated automatically on every change.
 
@@ -103,16 +103,16 @@ Manage an entire project through a single `PROJECT.md` file. Features a kanban b
 
 | Command | What It Does |
 |---------|--------------|
-| `/project-tracker init` | Create PROJECT.md (auto-seeds from PLAN.md if available) |
-| `/project-tracker status` | Sprint summary, task counts by column, blockers, velocity trend |
-| `/project-tracker add <task>` | Add task to Backlog with parsed metadata |
-| `/project-tracker next` | Recommend next unblocked, highest-priority task |
-| `/project-tracker board` | Display the current kanban board |
+| `/amp:track init` | Create PROJECT.md (auto-seeds from PLAN.md if available) |
+| `/amp:track status` | Sprint summary, task counts by column, blockers, velocity trend |
+| `/amp:track add <task>` | Add task to Backlog with parsed metadata |
+| `/amp:track next` | Recommend next unblocked, highest-priority task |
+| `/amp:track board` | Display the current kanban board |
 
 **Task metadata parsing:**
 
 ```
-/project-tracker add ! Implement auth flow ~3d #backend #security @alice depends:Setup database
+/amp:track add ! Implement auth flow ~3d #backend #security @alice depends:Setup database
 ```
 
 Parses: priority (high), title, duration (3 days), tags (backend, security), assignee (alice), dependency.
@@ -122,10 +122,10 @@ Parses: priority (high), title, duration (3 days), tags (backend, security), ass
 **Usage:**
 
 ```
-/project-tracker init
-/project-tracker add Build login page ~2d #frontend @bob
-/project-tracker next
-/project-tracker status
+/amp:track init
+/amp:track add Build login page ~2d #frontend @bob
+/amp:track next
+/amp:track status
 ```
 
 **Included reference files:** PROJECT.md template, detailed update guide (moving tasks, regenerating diagrams, managing sprints, calculating velocity).
@@ -139,13 +139,13 @@ The three skills are designed to work together seamlessly:
 ```mermaid
 flowchart LR
     subgraph Plan ["Phase 1: Plan"]
-        A["/project-planner"] --> B["PRD.md\nPLAN.md\nPROGRESS.md\nPIVOTS.md"]
+        A["/amp:plan"] --> B["PRD.md\nPLAN.md\nPROGRESS.md\nPIVOTS.md"]
     end
     subgraph Track ["Phase 2: Track"]
-        C["/project-tracker init"] --> D["PROJECT.md\nKanban + Gantt"]
+        C["/amp:track init"] --> D["PROJECT.md\nKanban + Gantt"]
     end
     subgraph Doc ["Phase 3: Document"]
-        E["/docs-on-steroids"] --> F["Technical Docs\n+ Diagrams"]
+        E["/amp:docs"] --> F["Technical Docs\n+ Diagrams"]
     end
     B -->|seeds board| C
     D -->|task done| G["Updates PROGRESS.md"]
@@ -155,10 +155,10 @@ flowchart LR
 
 **Typical workflow:**
 
-1. **Brainstorm** -- Chat about what you want to build. `/project-planner` auto-detects and generates PRD + PLAN
-2. **Initialize board** -- Run `/project-tracker init` to seed your kanban from the plan
-3. **Build** -- Use `/project-tracker next` to pick tasks, track progress as you code
-4. **Document** -- Use `/docs-on-steroids` on each component as you complete it
+1. **Brainstorm** -- Chat about what you want to build. `/amp:plan` auto-detects and generates PRD + PLAN
+2. **Initialize board** -- Run `/amp:track init` to seed your kanban from the plan
+3. **Build** -- Use `/amp:track next` to pick tasks, track progress as you code
+4. **Document** -- Use `/amp:docs` on each component as you complete it
 5. **Iterate** -- Changes are auto-logged in PIVOTS.md, progress auto-tracked in PROGRESS.md
 
 ---
@@ -176,15 +176,15 @@ Copy the skills you want into your Claude skills directory:
 
 ```bash
 # Global (available in all projects)
-cp -r skills/docs-on-steroids ~/.claude/skills/
-cp -r skills/project-planner ~/.claude/skills/
-cp -r skills/project-tracker ~/.claude/skills/
+cp -r skills/amp-docs ~/.claude/skills/
+cp -r skills/amp-plan ~/.claude/skills/
+cp -r skills/amp-track ~/.claude/skills/
 
 # Local (current project only)
 mkdir -p .claude/skills
-cp -r skills/docs-on-steroids .claude/skills/
-cp -r skills/project-planner .claude/skills/
-cp -r skills/project-tracker .claude/skills/
+cp -r skills/amp-docs .claude/skills/
+cp -r skills/amp-plan .claude/skills/
+cp -r skills/amp-track .claude/skills/
 ```
 
 ## Requirements

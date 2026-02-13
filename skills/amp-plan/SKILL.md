@@ -1,10 +1,10 @@
 ---
-name: project-planner
+name: amp:plan
 description: Automatically creates comprehensive project planning documentation when brainstorming or starting new projects, features, or components. Generates PRD.md, PLAN.md, PROGRESS.md, and PIVOTS.md with auto-selected Mermaid diagrams. Use when the user is brainstorming, planning a new project, designing a feature, starting a new component, or discussing what to build. Triggers on phrases like "let's build", "I want to create", "new project", "add a feature", "new component", "let's brainstorm", "what if we".
 argument-hint: [project or feature name]
 ---
 
-# Project Planner
+# amp:plan
 
 Generate structured planning documentation with Mermaid diagrams for any project, feature, or component.
 
@@ -13,7 +13,7 @@ Generate structured planning documentation with Mermaid diagrams for any project
 Activate this skill when the user's message matches any of these patterns:
 
 **Direct triggers:**
-- Explicit `/project-planner` invocation
+- Explicit `/amp:plan` invocation
 - "let's build...", "I want to create...", "new project..."
 - "add a feature...", "we need to implement...", "new feature..."
 - "let's create a component...", "new module...", "new component..."
@@ -26,8 +26,8 @@ Activate this skill when the user's message matches any of these patterns:
 - User asks "how should we structure..." or "what's the best approach for..."
 
 **Do NOT activate when:**
-- User is asking about an existing plan (use project-tracker instead)
-- User wants documentation for existing code (use docs-on-steroids instead)
+- User is asking about an existing plan (use amp:track instead)
+- User wants documentation for existing code (use amp:docs instead)
 - User is debugging or fixing an issue
 
 ## Output Directory
@@ -142,17 +142,17 @@ Update PIVOTS.md whenever:
 
 ## Cross-Skill Hooks
 
-### Seeding project-tracker
+### Seeding amp:track
 
-When the user has the `project-tracker` skill installed and runs `/project-tracker init` after planning:
+When the user has the `amp:track` skill installed and runs `/amp:track init` after planning:
 - Read the PLAN.md phases and tasks
 - Create PROJECT.md with tasks populated in the Backlog column
 - Preserve estimates (~Nd), tags (#tag), and assignees (@name)
 - Generate the initial Gantt and dependency graph from the plan
 
-### Feeding docs-on-steroids
+### Feeding amp:docs
 
-When documentation is generated with `docs-on-steroids`:
+When documentation is generated with `amp:docs`:
 - Reference the PRD.md architecture diagrams as starting points
 - Use the PLAN.md component breakdown to identify what needs documenting
 - Check PROGRESS.md to know which components are built and ready for docs
